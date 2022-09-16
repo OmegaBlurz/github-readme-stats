@@ -169,7 +169,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
-- `border_radius` - Corner rounding on the card_
+- `border_radius` - Corner rounding on the card
 
 > Note: The minimum of cache_seconds is currently 4 hours as a temporary fix for PATs exhaustion. 
 
@@ -187,6 +187,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 
 - `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
+- `card_width` - Set the card's width manually _(number)_
 - `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
