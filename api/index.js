@@ -1,17 +1,19 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
-  parseArray,
+import * as dotenv from "dotenv";
+import { renderStatsCard } from "../src/cards/stats-card.js";
+import { blacklist } from "../src/common/blacklist.js";
+import {
   clampValue,
   CONSTANTS,
-} = require("../src/common/utils");
-const fetchStats = require("../src/fetchers/stats-fetcher");
-const renderStatsCard = require("../src/cards/stats-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import { fetchStats } from "../src/fetchers/stats-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
-module.exports = async (req, res) => {
+dotenv.config();
+
+export default async (req, res) => {
   const {
     username,
     hide,
@@ -26,9 +28,11 @@ module.exports = async (req, res) => {
     title_color,
     icon_color,
     text_color,
+    text_bold,
     bg_color,
     theme,
     cache_seconds,
+    exclude_repo,
     custom_title,
     locale,
     disable_animations,
@@ -50,6 +54,7 @@ module.exports = async (req, res) => {
       username,
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
+      parseArray(exclude_repo),
     );
 
     const cacheSeconds = clampValue(
@@ -73,6 +78,7 @@ module.exports = async (req, res) => {
         title_color,
         icon_color,
         text_color,
+        text_bold: parseBoolean(text_bold),
         bg_color,
         theme,
         custom_title,
